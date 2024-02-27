@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
     use HasFactory;
     use HasTags;
+    use HasTranslations;
 
     /**
      * @var string
@@ -25,6 +27,9 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'date',
     ];
+
+    public $translatable = ['title'];
+
 
     /** @return BelongsTo<Author,self> */
     public function author(): BelongsTo
